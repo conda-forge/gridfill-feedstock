@@ -5,7 +5,7 @@ Home: https://github.com/ajdawson/gridfill
 
 Package license: MIT
 
-Feedstock license: BSD
+Feedstock license: BSD 3-Clause
 
 Summary: Fill missing values in a grid by solving Poisson's equation via an iterative relaxation scheme
 
