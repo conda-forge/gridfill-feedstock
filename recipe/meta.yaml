@@ -11,6 +11,10 @@ source:
 
 build:
     number: 0
+    script:
+        - python setup.py install --single-version-externally-managed --record record.txt  # [not (win and py<35)]
+        - python setup.py build --compiler=mingw32  # [win and py<35]
+        - python setup.py install  # [win and py<35]
 
 requirements:
     build:
@@ -18,6 +22,7 @@ requirements:
         - setuptools
         - cython
         - numpy x.x
+        - mingwpy  # [win and py<35]
     run:
         - python
         - numpy x.x
