@@ -1,44 +1,45 @@
 {% set version = "1.0.0" %}
 
 package:
-    name: gridfill
-    version: {{ version }}
+  name: gridfill
+  version: {{ version }}
 
 source:
-    fn: v{{ version }}.tar.gz
-    url: https://github.com/ajdawson/gridfill/archive/v{{ version }}.tar.gz
-    md5: 7258701d8296f974268e634ea09ed673
+  url: https://github.com/ajdawson/gridfill/archive/v{{ version }}.tar.gz
+  sha256: e56a02078d3827535a419250256d2b906eb03b00c40045df3d4020fb1b2a04b3
 
 build:
-    number: 0
-    script:
-        - python setup.py install --single-version-externally-managed --record record.txt  # [not (win and py<35)]
-        - python setup.py build --compiler=mingw32  # [win and py<35]
-        - python setup.py install  # [win and py<35]
+  number: 1
+  skip: True  # [win and py2k]
+  script:
+    - python -m pip install . --no-deps --ignore-installed
 
 requirements:
-    build:
-        - python
-        - setuptools
-        - cython
-        - numpy x.x
-        - mingwpy  # [win and py<35]
-    run:
-        - python
-        - numpy x.x
+  build:
+    - python
+    - pip
+    - cython
+    - numpy 1.11.*
+  run:
+    - python
+    - numpy >=1.11,<1.12
 
 test:
-    requires:
-        - nose
-    imports:
-        - gridfill
+  requires:
+    - nose
+  imports:
+    - gridfill
+  commands:
+    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
+    - conda inspect objects -p $PREFIX $PKG_NAME   # [osx]
 
 about:
     home: https://github.com/ajdawson/gridfill
     license: MIT
-    summary: Fill missing values in a grid by solving Poisson's equation via an iterative relaxation scheme
+    license_file: COPYING
+    summary: "Fill missing values in a grid by solving Poisson's equation via an iterative relaxation scheme"
 
 extra:
-    recipe-maintainers:
-        - ajdawson
-        - ocefpaf
+  recipe-maintainers:
+    - ajdawson
+    - ocefpaf
