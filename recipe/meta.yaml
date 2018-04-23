@@ -1,4 +1,4 @@
-{% set version = "1.0.0" %}
+{% set version = "1.0.1" %}
 
 package:
   name: gridfill
@@ -6,11 +6,10 @@ package:
 
 source:
   url: https://github.com/ajdawson/gridfill/archive/v{{ version }}.tar.gz
-  sha256: e56a02078d3827535a419250256d2b906eb03b00c40045df3d4020fb1b2a04b3
+  sha256: 39d415da855e62d95f9e6221efbe9ee66605f83db217eeac559ded8678158e47
 
 build:
-  number: 1
-  skip: True  # [win and py2k]
+  number: 0
   script:
     - python -m pip install . --no-deps --ignore-installed
 
@@ -22,7 +21,7 @@ requirements:
     - numpy 1.11.*
   run:
     - python
-    - numpy >=1.11,<1.12
+    - numpy >=1.11
 
 test:
   requires:
