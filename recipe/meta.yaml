@@ -9,28 +9,27 @@ source:
   sha256: 39d415da855e62d95f9e6221efbe9ee66605f83db217eeac559ded8678158e47
 
 build:
-  number: 0
-  script:
-    - python -m pip install . --no-deps --ignore-installed
+  number: 1000
+  skip: True  # [win and vc<14]
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
 
 requirements:
   build:
+    - {{ compiler('c') }}
+  host:
     - python
     - pip
-    - cython
+    - cython >=0.15.1
     - numpy 1.11.*
   run:
     - python
-    - numpy >=1.11
+    - {{ pin_compatible('numpy') }}
 
 test:
   requires:
     - nose
   imports:
     - gridfill
-  commands:
-    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
-    - conda inspect objects -p $PREFIX $PKG_NAME   # [osx]
 
 about:
     home: https://github.com/ajdawson/gridfill
