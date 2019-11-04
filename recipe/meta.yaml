@@ -9,7 +9,7 @@ source:
   sha256: 39d415da855e62d95f9e6221efbe9ee66605f83db217eeac559ded8678158e47
 
 build:
-  number: 1000
+  number: 1001
   skip: True  # [win and vc<14]
   script: "{{ PYTHON }} -m pip install . --no-deps -vv"
 
@@ -20,7 +20,7 @@ requirements:
     - python
     - pip
     - cython >=0.15.1
-    - numpy 1.11.*
+    - numpy
   run:
     - python
     - {{ pin_compatible('numpy') }}
