@@ -1,17 +1,17 @@
-{% set version = "1.0.1" %}
+{% set version = "1.1.0" %}
 
 package:
   name: gridfill
   version: {{ version }}
 
 source:
-  url: https://github.com/ajdawson/gridfill/archive/v{{ version }}.tar.gz
-  sha256: 39d415da855e62d95f9e6221efbe9ee66605f83db217eeac559ded8678158e47
+  url: https://github.com/ajdawson/gridfill/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: 532cf15c98d0f9a0e3669b22358e7601e72de2e8ac81497b86ad11dd86f606cd
 
 build:
-  number: 1006
+  number: 0
   skip: True  # [win and vc<14]
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+  script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   build:
@@ -19,17 +19,20 @@ requirements:
   host:
     - python
     - pip
-    - cython >=0.15.1
+    - setuptools
+    - cython >=3.0
     - numpy
   run:
     - python
     - {{ pin_compatible('numpy') }}
 
 test:
-  requires:
-    - nose
   imports:
     - gridfill
+  requires:
+    - pytest
+  commands:
+    - pytest --pyargs gridfill.tests
 
 about:
     home: https://github.com/ajdawson/gridfill
