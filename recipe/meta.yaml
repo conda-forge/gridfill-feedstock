@@ -10,7 +10,7 @@ source:
 
 build:
   number: 0
-  skip: True  # [win and vc<14]
+  skip: true  # [win and vc<14]
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
@@ -35,10 +35,10 @@ test:
     - pytest --pyargs gridfill.tests
 
 about:
-    home: https://github.com/ajdawson/gridfill
-    license: MIT
-    license_file: COPYING
-    summary: "Fill missing values in a grid by solving Poisson's equation via an iterative relaxation scheme"
+  home: https://github.com/ajdawson/gridfill
+  license: MIT
+  license_file: COPYING
+  summary: "Fill missing values in a grid by solving Poisson's equation via an iterative relaxation scheme"
 
 extra:
   recipe-maintainers:
