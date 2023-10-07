@@ -1,4 +1,4 @@
-{% set version = "1.1.0" %}
+{% set version = "1.1.1" %}
 
 package:
   name: gridfill
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/ajdawson/gridfill/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 532cf15c98d0f9a0e3669b22358e7601e72de2e8ac81497b86ad11dd86f606cd
+  sha256: 5375dbf90e9f1192ada8af545c1c67a4da91c422a10074fcac7316e9e3c6eabe
 
 build:
   number: 0
