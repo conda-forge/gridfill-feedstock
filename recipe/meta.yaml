@@ -9,13 +9,14 @@ source:
   sha256: 5375dbf90e9f1192ada8af545c1c67a4da91c422a10074fcac7316e9e3c6eabe
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win and vc<14]
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
   host:
     - python
     - pip
@@ -24,7 +25,6 @@ requirements:
     - numpy
   run:
     - python
-    - {{ pin_compatible('numpy') }}
 
 test:
   imports:
